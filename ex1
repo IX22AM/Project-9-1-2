@@ -1,0 +1,31 @@
+class DynamicMatrix:
+    def __init__(self):
+        self.matrix = []
+    def add_row(self, row):
+        if not self.matrix:
+            self.matrix.append(list(row))
+        else:
+            if len(row) != len(self.matrix[0]):
+                raise ValueError("Довжина рядка не збігається з кількістю стовпців у матриці")
+            self.matrix.append(list(row))
+    def add_column(self, column):
+        if not self.matrix:
+            for val in column:
+                self.matrix.append([val])
+        else:
+            if len(column) != len(self.matrix):
+                raise ValueError("Довжина стовпця не збігається з кількістю рядків у матриці")
+            for i in range(len(self.matrix)):
+                self.matrix[i].append(column[i])
+    def total_sum(self):
+        return sum(sum(row) for row in self.matrix)
+    def __str__(self):
+        return "\n".join(str(row) for row in self.matrix)
+matrix = DynamicMatrix()
+matrix.add_row([1, 2, 3])
+matrix.add_row([4, 5, 6])
+matrix.add_column([7, 8])
+print("Поточна матриця:")
+print(matrix)
+print("-" * 20)
+print(f"Сума всіх елементів: {matrix.total_sum()}")# Output: 36
