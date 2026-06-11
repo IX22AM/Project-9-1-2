@@ -1,0 +1,27 @@
+class FactorialCache:
+    def __init__(self):
+        self.cache = {0: 1, 1: 1}
+
+    def compute(self, n):
+        if n < 0:
+            raise ValueError("Факторіал визначений тільки для невід'ємних цілих чисел.")
+        
+        if n in self.cache:
+            print(f"[Кеш] Повертаємо готове значення для {n}!")
+            return self.cache[n]
+
+        last_n = max(self.cache.keys())
+        result = self.cache[last_n]
+
+        for i in range(last_n + 1, n + 1):
+            result *= i
+            self.cache[i] = result  # Зберігаємо кожен проміжний етап у кеш
+
+        print(f"[Обчислення] Розраховано нове значення для {n}.")
+        return result
+
+fc = FactorialCache()
+
+print(fc.compute(5))  
+print(fc.compute(3))  
+print(fc.compute(6)) 
