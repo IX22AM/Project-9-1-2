@@ -23,9 +23,9 @@ class TestLibrary(unittest.TestCase):
 class TestNotifyMock(unittest.TestCase):
     def test(self):
         mock_obj=Mock(spec=NotificationService)
-        mock_obj.send.return_value=("Oleg", "qwerty123")
-        result=UserManager("Oleg", mock_obj).notify_user("qwerty123")
-        self.assertEqual(result, ("Oleg", "qwerty123"))
+        mock_obj.send.return_value=("Artem", "qwerty123")
+        result=UserManager("Artem", mock_obj).notify_user("qwerty123")
+        self.assertEqual(result, ("Artem", "qwerty123"))
 class TestEven(unittest.TestCase):
     @parameterized.expand([('even', 2, True), ('odd', 3, False),
                            ('even', 0, True),
